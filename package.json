@@ -39,6 +39,15 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "karma start test\\karma.conf.js"
+    "test": "karma start test\\karma.conf.js",
+	"start": "grunt server"
+  },
+  "dependencies": {
+    "autoprefixer-core": "5.2.1",
+    "grunt": "0.4.5",
+    "grunt-cli": "1.2.0",
+    "jit-grunt": "0.9.1",
+    "jshint-stylish": "1.0.2",
+    "time-grunt": "1.4.0"
   }
 }
