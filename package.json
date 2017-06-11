@@ -40,7 +40,7 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js",
-	"start": "grunt server"
+	"start": "grunt serve --force"
   },
   "dependencies": {
     "autoprefixer-core": "5.2.1",
