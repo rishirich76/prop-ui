@@ -488,6 +488,9 @@ module.exports = function (grunt) {
     'connect:test',
     'karma'
   ]);
+  
+  grunt.registerTask('heroku',
+    ['compass:dist', 'autoprefixer', 'imagemin']);
 
   grunt.registerTask('build', [
     'clean:dist',
