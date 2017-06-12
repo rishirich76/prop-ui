@@ -4,11 +4,12 @@ var path    = require("path");
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static('/'));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
-app.use('/styles',  express.static(__dirname + '/app/styles'));
+app.use('/favicon.ico',  express.static(__dirname + '/app/favicon.ico'));
 app.use('/app',  express.static(__dirname + '/app'));
+app.use('/bower_components',  express.static(__dirname + '/app/bower_components'));
+app.use('/styles',  express.static(__dirname + '/app/styles'));
 app.use('/views',  express.static(__dirname + '/app/views'));
-app.use('/favicon.ico',  express.static(__dirname + '/favicon.ico'));
+
 
 app.get('/', function (req, res) {
   console.log('Agent App is running');
