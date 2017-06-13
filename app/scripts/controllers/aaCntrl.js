@@ -1,9 +1,9 @@
 'use strict';
 var app = angular.module('myPropApp');
 
-app.controller('AACtrl', ['$scope', '$log', 'aaService', function($scope, $log, aaService) {
+app.controller('AACtrl', ['aaService', '$scope', '$log', function(aaService, $scope, $log) {
     var messageRecording = "Recording...";
-    var messageCouldntHear = "Again";
+    var messageCouldntHear = "Please say that again.";
     var messageSorry = "I'm sorry, I don't have the answer to that yet.";
     var btnText = "Speak";
     $scope.submit = switchRecognition;
@@ -27,7 +27,7 @@ app.controller('AACtrl', ['$scope', '$log', 'aaService', function($scope, $log, 
                 text += event.results[i][0].transcript;
             }
             setInput(text);
-            respond(text);
+            //respond(text);
             console.log(text);
 
             stopRecognition();
@@ -78,7 +78,7 @@ app.controller('AACtrl', ['$scope', '$log', 'aaService', function($scope, $log, 
             var msg = new SpeechSynthesisUtterance();
             msg.voiceURI = "native";
             msg.text = val;
-            msg.lang = "en-US";
+            msg.lang = "en-IN";
             window.speechSynthesis.speak(msg);
         }
     }
@@ -92,16 +92,11 @@ app.controller('AACtrl', ['$scope', '$log', 'aaService', function($scope, $log, 
 
     function send() {
         var text = $scope.pnrVal;
-        // var respons = aaService.getResults(, function cb(res) {
-        //     respond("Return from service");
-        //     // if (res.name != undefined && res.name != '') {
-        //     //     $scope.loginStatus = successLoginText + res.name;
-        //     // }
-        //     // else {
-        //     //     $scope.loginStatus = errorLoginText;
-        //     // }
-
-        // }); 
+        var respons = aaService.getSpeechResults(text, function cb(res) {
+            var text = res.resolvedtext.result.fulfillment.speech;
+            respond(text);
+            console.log("xx respons == " + respons);
+        }); 
         // if (undefined ==  respons) {
         //     // respond("Some error occured at server, hope you won't mind");
         //     $scope.pnrVal = "Some error occured at server, hope you won't mind";
